@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотограф Анна | Свадебное портфолио</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        
+        .header { background: #fff; padding: 1rem; position: fixed; width: 100%; top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #d4af37; }
+        
+        .hero { 
+            height: 100vh; 
+            background: #f8f9fa; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: #333; 
+            margin-top: 60px;
+        }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .cta-button { 
+            background: #d4af37; 
+            color: white; 
+            border: none; 
+            padding: 15px 40px; 
+            margin-top: 2rem;
+            cursor: pointer; 
+            border-radius: 5px;
+        }
+        
+        .portfolio { padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+        .filter-buttons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn { 
+            background: white; 
+            border: 2px solid #d4af37; 
+            color: #d4af37; 
+            padding: 10px 25px; 
+            cursor: pointer; 
+            border-radius: 25px; 
+        }
+        .filter-btn.active { background: #d4af37; color: white; }
+        
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .gallery-item { 
+            background: #f8f9fa; 
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px dashed #d4af37;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .contact { padding: 4rem 1rem; background: #f8f9fa; }
+        .contact-form { max-width: 500px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 1rem; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+        .submit-btn { 
+            background: #d4af37; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            width: 100%; 
+            cursor: pointer; 
+            border-radius: 5px; 
+        }
+        
+        footer { background: #333; color: white; text-align: center; padding: 2rem; }
+        
+        @media (max-width: 768px) {
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Фотограф Анна</div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Анна Иванова</h1>
+            <p>Профессиональный свадебный фотограф</p>
+            <p>Запечатлеваю самые важные моменты вашей жизни</p>
+            <button class="cta-button" onclick="scrollToSection('portfolio')">Смотреть портфолио</button>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">Мои работы</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all')">Все работы</button>
+            <button class="filter-btn" onclick="filterGallery('wedding')">Свадьбы</button>
+            <button class="filter-btn" onclick="filterGallery('portrait')">Портреты</button>
+        </div>
+        <div class="gallery" id="photoGallery">
+    <div class="gallery-item">
+        <img src="images/wedding1.jpg" alt="Свадьба Алины и Максима" 
+             onerror="this.style.display='none'">
+        <h3>Свадьба Алины и Максима</h3>
+        <p>Летняя церемония в парке</p>
+    </div>
+    <div class="gallery-item">
+        <img src="images/portrait1.jpg" alt="Портретная съемка" 
+             onerror="this.style.display='none'">
+        <h3>Портретная съемка</h3>
+        <p>Осенняя фотосессия в лесу</p>
+    </div>
+    <div class="gallery-item">
+        <img src="images/wedding2.jpg" alt="Свадьба в замке" 
+             onerror="this.style.display='none'">
+        <h3>Свадьба в замке</h3>
+        <p>Торжественная церемония</p>
+    </div>
+</div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Свяжитесь со мной</h2>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Ваш email" required>
+            <input type="tel" placeholder="Ваш телефон">
+            <textarea placeholder="Опишите ваше мероприятие" rows="4" required></textarea>
+            <button type="submit" class="submit-btn">Отправить запрос</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Фотограф Анна Иванова</p>
+        <p>+7 (999) 123-45-67 | anna@example.com</p>
+    </footer>
+
+    <script>
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            // В реальном проекте здесь будет фильтрация через JavaScript
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Спасибо за вашу заявку! Я свяжусь с вами в ближайшее время.');
+            event.target.reset();
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Добавляем обработку ошибок для изображений
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                const parent = this.parentElement;
+                if (!parent.querySelector('.placeholder-text')) {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'placeholder-text';
+                    placeholder.innerHTML = '<p>Для добавления фото создайте папку "images" и добавьте файлы:</p><ul><li>wedding1.jpg</li><li>portrait1.jpg</li><li>wedding2.jpg</li></ul>';
+                    parent.appendChild(placeholder);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
